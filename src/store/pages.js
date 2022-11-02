@@ -26,6 +26,7 @@ export const createActions = () => ({
 
 const usePagesStore = defineStore('pages', {
 	state: () => ({
+		// Adding this makes everything work as expected
 		// id2: {},
 	}),
 	getters: createGetters(),
