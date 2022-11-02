@@ -1,15 +1,6 @@
 <template>
 	<div>
-		Page 1
-		<p>Here we'll check on the <strong>secondPageLayout</strong> for the first time.
-		It gets calculated, and does not recalculate even on subsequent navigation
-		when the pages store updates.
-		<p>The layout is default because the page hasn't been loaded into the store
-		yet, but something on this page
-		<p><strong>Page 2's secondPageLayout: {{ secondPageLayout }}</strong></p>
-		<button @click="routeToPage2">
-			Go to Page 2
-		</button>
+
 	</div>
 </template>
 <script>
@@ -34,7 +25,9 @@ export default {
 	},
 
 	beforeMount() {
-		this.setActivePage('id1', { layout: 'layout1' });
+		this.setSiteProperties({ colors: {
+			primary: 'initial',
+		}});
 	},
 };
 </script>

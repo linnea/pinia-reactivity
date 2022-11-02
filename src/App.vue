@@ -1,12 +1,23 @@
 <template>
   <div id="app">
-    <router-view />
+	<button @click="toggleView">toggleView</button>
+	<router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
+	name: 'App',
+
+	methods: {
+		toggleView() {
+			if (this.$route.name === 'home') {
+				this.$router.push('page2');
+			} else {
+				this.$router.push('/');
+			}
+		},
+	}
 }
 </script>
 
