@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router';
 import { createPinia, PiniaVuePlugin, setActivePinia } from 'pinia';
-import { createApp } from './createApp';
+// import { createApp } from './createApp';
 import App from './App.vue'
 import Page1 from './components/Page1.vue';
 import Page2 from './components/Page2.vue';
@@ -24,16 +24,18 @@ const router = new Router({
 
 const pinia = createPinia();
 
-const app = createApp({
+Vue.use(Router);
+Vue.use(PiniaVuePlugin);
+setActivePinia(pinia);
+Vue.use(pinia);
+
+const app = new Vue({
 	pinia,
-  render: h => h(App),
+	router,
+	render: h => h(App),
 });
 
-app.use(router);
-app.use(PiniaVuePlugin);
-setActivePinia(pinia);
-app.use(pinia);
 
 Vue.config.productionTip = false
 
-app.mount('#app')
+app.$mount('#app')
