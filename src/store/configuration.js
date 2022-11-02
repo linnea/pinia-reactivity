@@ -8,7 +8,7 @@ export default class Configuration {
 
 	static #instance;
 
-	constructor({ vuexStore, reqres, $http, ASSET_BASE, CMS_API_PATH, config }) {
+	constructor({ vuexStore }) {
 		this.vuexStore = vuexStore;
 
 		Configuration.#instance = this;

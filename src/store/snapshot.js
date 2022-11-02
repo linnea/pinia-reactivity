@@ -5,7 +5,11 @@ const initialGetters = {};
 /**
  * @return {Object} Snapshot Actions
  */
-const createActions = () => ({});
+const createActions = () => ({
+	setPrimaryColor({ commit }, value) {
+		commit('setPrimaryColor', value);
+	},
+});
 
 // separate Theme Mutations, to share between Editor and Frame/Site stores
 
@@ -21,27 +25,27 @@ export const createThemeMutations = ({ Vue }) => ({
 });
 
 const createMutations = ({ Vue }) => ({
-	/**
-	 * replaces the entire snapshot property in the Vuex Store's root state.
-	 * @param {Object} state snapshot property from state
-	 * @param {Object} payload.rootState root state of Vuex Store
-	 * @param {Object} payload.newSnapshot new snapshot to replace current snapshot
-	 */
-	[types.SYNC](state, { rootState, newSnapshot }) {
-		if (newSnapshot && typeof newSnapshot === 'object') {
-			Vue.set(rootState, 'snapshot', newSnapshot);
-		}
-	},
+	// /**
+	//  * replaces the entire snapshot property in the Vuex Store's root state.
+	//  * @param {Object} state snapshot property from state
+	//  * @param {Object} payload.rootState root state of Vuex Store
+	//  * @param {Object} payload.newSnapshot new snapshot to replace current snapshot
+	//  */
+	// syncSnapshot(state, { rootState, newSnapshot }) {
+	// 	if (newSnapshot && typeof newSnapshot === 'object') {
+	// 		Vue.set(rootState, 'snapshot', newSnapshot);
+	// 	}
+	// },
 	// include Theme Mutations in this store's mutations
 	...createThemeMutations({ Vue }),
 });
 
-export default function createSnapshotStore({ Vue, reqres }) {
+export default function createSnapshotStore({ Vue }) {
 	return {
 		namespaced: true,
 		state: createState,
 		getters: initialGetters,
-		actions: createActions({ reqres }),
+		actions: createActions(),
 		mutations: createMutations({ Vue }),
 	};
 }
